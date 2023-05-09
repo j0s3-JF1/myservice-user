@@ -26,7 +26,7 @@ const ProfilePicture = () => {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <TouchableOpacity style={styles.profileButton} onPress={pickImage}>
-                {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, borderRadius: 100 }} />}
+                {image && <Image source={{ uri: image }} style={{ width: 130, height: 130, borderRadius: 100 }} />}
             </TouchableOpacity>
         </View>
     );
@@ -35,8 +35,8 @@ const ProfilePicture = () => {
 const styles = StyleSheet.create({
 
     profileButton: {
-        width: 210,
-        height: 210,
+        width: 150,
+        height: 150,
         elevation: 5,
         borderRadius: 110,
         backgroundColor: '#FFF',
