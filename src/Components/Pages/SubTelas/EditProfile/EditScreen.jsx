@@ -13,106 +13,64 @@ import styles from './Style'
 export default function EditScreen() {
     return (
         <View style={styles.container}>
-            <Text style={{
-                fontSize: 20,
-                fontWeight: 'bold'
-            }}>
-                Editar perfil
-            </Text>
+            <Text style={{ fontSize: 25, fontWeight: 'bold', bottom: '10%' }}>Editar Perfil</Text>
             <View style={{
-                width: '80%',
-                height: 2,
-                backgroundColor: '#000'
+                width: '90%',
+                height: 1,
+                backgroundColor: 'brown',
+                bottom: '10%'
             }}></View>
-            <View style={{
-                top: '2%',
-            }}>
-                <ProfilePic/>
+            <View style={{bottom: '7%'}}>
+                <ProfilePic />
             </View>
-            <Text style={{
-                top: '3%',
-                fontSize: 20,
-                fontWeight: 'bold'
-            }}>
-                Fernando Barbosa
-            </Text>
             <View style={{
-                width: '80%',
-                height: 2,
-                backgroundColor: '#000',
-                top: '5%'
+                width: '90%',
+                height: 1,
+                backgroundColor: 'brown',
+                bottom: '3%'
             }}></View>
-            <>
-                <View style={{
-                    top: '7%',
-                    right: '30%',
-                }}>
-                    <Text style={{
-                        fontSize: 20,
-                        fontWeight: '700'
-                    }}>Nome:</Text>
+            <View style={styles.InputArea}>
+                <View style={styles.InputIcon}>
+                    <AntDesign name="user" size={24} color="#A9A9A9" />
                 </View>
-                <View style={styles.InputArea}>
-                    <View style={styles.InputIcon}>
-                        <AntDesign name="user" size={24} color="#A9A9A9" />
-                    </View>
-                    <TextInput style={styles.Input} placeholder='Email' placeholderTextColor='#131212' />
+                <TextInput style={styles.Input} placeholder='Nome' placeholderTextColor='#131212' />
+            </View>
+            <View style={{
+                top: '7%',
+                right: '30%',
+            }}>
+            </View>
+            <View style={styles.InputArea}>
+                <View style={styles.InputIcon}>
+                    <AntDesign name="mail" size={24} color="#A9A9A9" />
                 </View>
-            </>
-            <>
-                <View style={{
-                    top: '7%',
-                    right: '30%',
-                }}>
-                    <Text style={{
-                        fontSize: 20,
-                        fontWeight: '700'
-                    }}>Email:</Text>
+                <TextInput style={styles.Input} placeholder='Email' placeholderTextColor='#131212' />
+            </View>
+            <View style={{
+                top: '7%',
+                right: '30%',
+            }}>
+            </View>
+            <View style={styles.InputArea}>
+                <View style={styles.InputIcon}>
+                    <AntDesign name="lock" size={24} color="#A9A9A9" />
                 </View>
-                <View style={styles.InputArea}>
-                    <View style={styles.InputIcon}>
-                        <AntDesign name="mail" size={24} color="#A9A9A9" />
-                    </View>
-                    <TextInput style={styles.Input} placeholder='Email' placeholderTextColor='#131212' />
+                <TextInput style={styles.Input} placeholder='Senha' placeholderTextColor='#131212' />
+            </View>
+            <View style={{
+                top: '7%',
+                right: '27%',
+            }}>
+            </View>
+            <View style={styles.InputArea}>
+                <View style={styles.InputIcon}>
+                    <AntDesign name="phone" size={24} color="#A9A9A9" />
                 </View>
-            </>
-            <>
-                <View style={{
-                    top: '7%',
-                    right: '30%',
-                }}>
-                    <Text style={{
-                        fontSize: 20,
-                        fontWeight: '700'
-                    }}>Senha:</Text>
-                </View>
-                <View style={styles.InputArea}>
-                    <View style={styles.InputIcon}>
-                        <AntDesign name="lock" size={24} color="#A9A9A9" />
-                    </View>
-                    <TextInput style={styles.Input} placeholder='Email' placeholderTextColor='#131212' />
-                </View>
-            </>
-            <>
-                <View style={{
-                    top: '7%',
-                    right: '27%',
-                }}>
-                    <Text style={{
-                        fontSize: 20,
-                        fontWeight: '700'
-                    }}>Telefone:</Text>
-                </View>
-                <View style={styles.InputArea}>
-                    <View style={styles.InputIcon}>
-                        <AntDesign name="phone" size={24} color="#A9A9A9" />
-                    </View>
-                    <TextInput style={styles.Input} placeholder='Email' placeholderTextColor='#131212' />
-                </View>
-            </>
-            <View style={{top: '10%', width: '60%', height: '7%'}}>
+                <TextInput style={styles.Input} placeholder='Telefone' placeholderTextColor='#131212' />
+            </View>
+            <View style={{ width: '60%', height: '7%', top: "5%" }}>
                 <TouchableOpacity style={styles.buttonUpdate}>
-                    <Text style={{color: '#FFF', fontWeight: 'bold', fontSize: 20}}>Atualizar</Text>
+                    <Text style={{ color: '#FFF', fontWeight: 'bold', fontSize: 20 }}>Atualizar</Text>
                 </TouchableOpacity>
             </View>
         </View>

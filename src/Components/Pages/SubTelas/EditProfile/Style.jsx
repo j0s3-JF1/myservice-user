@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        bottom: '12%'
     },
 
     InputArea: {
@@ -16,11 +15,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         width: '80%',
-        height: '5%',
-        top: '15%',
+        height: 35,
         borderColor: '#A9A9A9',
         borderWidth: 1,
         borderRadius: 10,
+        margin: 10
     },
 
     InputIcon: {
@@ -41,10 +40,10 @@ const styles = StyleSheet.create({
         fontWeight: '500',
     },
 
-    buttonUpdate:{
+    buttonUpdate: {
         backgroundColor: '#0A3DC2',
         width: '100%',
-        height: '100%',
+        height: 50,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 50,

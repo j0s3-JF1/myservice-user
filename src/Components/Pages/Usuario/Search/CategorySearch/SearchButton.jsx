@@ -1,18 +1,19 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
-const SearchButton = ({category}) => {
+const CategoryButton = ({servico}) => {
     return (
         <TouchableOpacity style={styles.buttonCategory}>
-            <Text>{category}</Text>
+            <Text>{servico.categoria}</Text>
         </TouchableOpacity>
     );
 }
 
 const styles = StyleSheet.create({
     buttonCategory: {
-        width: '180%',
-        height: 60,
+        width: '80%',
+        height: '5%',
+        margin: 5,
         backgroundColor: '#FFF',
         justifyContent: 'center',
         alignItems: 'center',
@@ -20,4 +21,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default SearchButton;
+export default CategoryButton;

@@ -3,12 +3,10 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
 
     container:{
-        width: '100%',
-        height: '100%',
-        backgroundColor: '#F8F8F8',
-        justifyContent: 'center',
         alignItems: 'center',
-        bottom: '20%'
+        width: '100%',
+        height: 1000,
+        top: '2%'
     },
 
     Search:{
@@ -18,19 +16,21 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
         borderRadius: 10,
         elevation: 2,
-        bottom: 30,
+        marginTop: '15%',
+        position: 'relative',
+        left: '1.5%',
     },
 
     iconSearch:{
         width: '15%',
-        height: 40,
+        height: '100%',
         justifyContent: 'center',
         alignItems: 'center'
     },
 
     inputSearch: {
         width: '70%',
-        height: 40,
+        height: '100%',
         fontSize: 20,
     },
 })

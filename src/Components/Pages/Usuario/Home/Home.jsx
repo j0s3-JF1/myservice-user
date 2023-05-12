@@ -100,7 +100,7 @@ export default function Home() {
                         height: 900,
                     }}>
                         <View>
-                            <View style={{ bottom: 40 }}>
+                            <View style={{ bottom: '50%' }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                     <Ionicons name="location" size={30} color='#000' />
                                     <Text style={{ fontSize: 25, fontWeight: 'bold' }}>Santana de Parnaiba - SP</Text>

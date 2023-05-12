@@ -24,7 +24,7 @@ const ProfilePicture = () => {
     };
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{alignItems: 'center', justifyContent: 'center' }}>
             <TouchableOpacity style={styles.profileButton} onPress={pickImage}>
                 {image && <Image source={{ uri: image }} style={{ width: 130, height: 130, borderRadius: 100 }} />}
             </TouchableOpacity>
