@@ -5,10 +5,15 @@ import { useNavigation } from "@react-navigation/native";
 
 //Importe estilização
 import styles from "./Style";
+import SuccessAlert from "../../../Alert/SuccessAlert";
 
 export default function Login() {
 
     const navigation = useNavigation();
+
+    const showAlert = () => {
+        <SuccessAlert/>
+    };
 
     //Password input
     const [password, setPassword] = useState('');
@@ -118,7 +123,7 @@ export default function Login() {
                 <Text style={{ fontSize: 18 }}>Ou</Text>
             </View>
             <View style={styles.SocialMedia}>
-                <TouchableOpacity style={styles.buttonGoogle}>
+                <TouchableOpacity style={styles.buttonGoogle} onPress={showAlert}>
                     <Image source={require('../../../../../assets/google-icon.png')} style={styles.google} />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonFacebook}>

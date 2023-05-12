@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
 
 import styles from "./Style";
-import { useNavigation } from "@react-navigation/native";
+
+//importação de alert
+import SuccessAlert from "../../../Alert/SuccessAlert";
 
 export default function CadastroUser() {
 
@@ -35,7 +38,7 @@ export default function CadastroUser() {
                     body: JSON.stringify(body)
                 })
                 .then((response) => {
-                    alert("Usuário cadastrado com sucesso");
+                    <SuccessAlert/>
                 })
                 .then(() => {
                     navigation.navigate('Login')
