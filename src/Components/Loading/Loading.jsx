@@ -5,7 +5,8 @@ import { ActivityIndicator } from "react-native";
 const Loading = () => {
     return (
         <View style={{
-            flex: 1,
+            widht: '100%',
+            height: '100%',
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: '#F8F8F8'

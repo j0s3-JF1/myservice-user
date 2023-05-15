@@ -9,6 +9,8 @@ import Find from "../Pages/SubTelas/FindScreen/Find";
 import Visit from "../Pages/SubTelas/VisitScreen/Visit";
 import Avaliate from "../Pages/SubTelas/AvaliateScreen/Avaliate";
 import EditScreen from "../Pages/SubTelas/EditProfile/EditScreen";
+import JobScreen from "../Pages/SubTelas/JobScreen/JobScreen";
+import ForgotPass from "../Pages/SubTelas/ForgotPassScreen/ForgotPass";
 
 
 export default function Routes(){
@@ -61,6 +63,20 @@ export default function Routes(){
             <Stack.Screen
                 name="Edit"
                 component={EditScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="Job"
+                component={JobScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="Forgot"
+                component={ForgotPass}
                 options={{
                     headerShown: false
                 }}

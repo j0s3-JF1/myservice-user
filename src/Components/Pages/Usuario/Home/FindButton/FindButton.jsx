@@ -1,16 +1,25 @@
 import React from "react";
 import { useState } from "react";
-import { TouchableOpacity, Text, Image, View } from "react-native";
-import { StyleSheet } from "react-native";
-import { Ionicons } from '@expo/vector-icons';
-import { FontAwesome } from "@expo/vector-icons";
+import { TouchableOpacity, Text, Image, View, StyleSheet } from "react-native";
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
 
-const FindButton = ({finds }) => {
+const FindButton = ({ finds }) => {
     
+    //constante de curtida
     const [likeButton, setLike] = useState(true);
 
+    //constante de navegação
+    const navigation = useNavigation();
+
+    //constante de parametros
+    const parameters = {
+        nome: finds.nome,
+        empresa: finds.empresa,
+    }
+
     return (
-        <TouchableOpacity style={styles.buttonFind}>
+        <TouchableOpacity style={styles.buttonFind} onPress={() => navigation.navigate('Job', parameters)}>
             <Image
                 source={require('../../../../../../assets/eletricista.jpeg')}
                 style={{

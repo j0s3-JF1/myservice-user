@@ -10,7 +10,7 @@ export default function Profile() {
 
     //navegação para tela de edição
     const navigation = useNavigation();
-
+    
     return (
         <View style={styles.container}>
             <TouchableOpacity

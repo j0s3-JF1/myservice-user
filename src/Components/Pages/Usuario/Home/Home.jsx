@@ -26,7 +26,7 @@ export default function Home() {
     //URL -> Ultimos Procurados
     const URLfind = "https://myserviceserver.azurewebsites.net/api/empresa";
 
-    useEffect(() => {
+    const [findLoaded] = useEffect(() => {
         fetch(URLfind, {
             method: 'GET'
         })
@@ -77,94 +77,81 @@ export default function Home() {
     const [avaliateList, setAvaliateList] = useState(AvaliateAPI);
 
     //constante para carregamento de página
-    const [isLoading, setLoading] = useState(true);
-
-    useEffect(() => {
-        setTimeout(() => {
-            setLoading(false);
-        }, 3000);
-    }, []);
-
-
+    if (!findLoaded) return <Loading/>;
     return (
         <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-            {
-                isLoading ? (
-                    <Loading/>
-                ) : (
-                    <View style={{
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        bottom: '2%',
-                        width: '100%',
-                        height: 900,
-                    }}>
-                        <View>
-                            <View style={{ bottom: '50%' }}>
-                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <Ionicons name="location" size={30} color='#000' />
-                                    <Text style={{ fontSize: 25, fontWeight: 'bold' }}>Santana de Parnaiba - SP</Text>
-                                </View>
-                            </View>
-                            <View style={styles.Search}>
-                                <View style={styles.iconSearch}>
-                                    <Ionicons name="search" size={25} color='#0A3DC2' />
-                                </View>
-                                <TextInput placeholder="Pesquisar" style={styles.inputSearch} />
-                            </View>
-                        </View>
-                        <View style={{ flexDirection: 'row', bottom: '4%', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 15, fontWeight: 'bold', right: 70 }}>Ultimos Visitados</Text>
-                            <VisitMore />
-                        </View>
-                        <View style={{ flexDirection: 'row', bottom: '1%', left: 10, }}>
-                            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                                {
-                                    visit.map((visits, index) => (
-                                        <VisitButton visits={visits} key={index} />
-                                    ))
-                                }
-                            </ScrollView>
-                        </View>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', top: '7%' }}>
-                            <Text style={{ fontSize: 15, fontWeight: 'bold', right: 70 }}>Mais Procurados</Text>
-                            <FindMore />
-                        </View>
-                        <View style={{ flexDirection: 'row', top: '10%', left: 10 }}>
-                            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                                {
-                                    find.map((finds, index) => (
-                                        <FindButton finds={finds} key={index} />
-                                    ))
-                                }
-                            </ScrollView>
-                        </View>
-                        <View style={{ flexDirection: 'row', top: '17%', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 15, fontWeight: 'bold', right: 50 }}>Melhores Avaliados</Text>
-                            <AvaliateMore />
-                        </View>
-                        <View style={{ flexDirection: 'row', top: '20%', left: 10 }}>
-                            <ScrollView horizontal>
-                                <FlatList
-                                    horizontal
-                                    style={{
-                                        width: '100%',
-                                        height: '100%',
-
-                                    }}
-                                    data={avaliateList}
-                                    renderItem={({ item }) => {
-                                        return (
-                                            <AvaliateButton data={item} />
-                                        )
-                                    }}
-                                    keyExtractor={(item) => item.id}
-                                    showsVerticalScrollIndicator={true}
-                                />
-                            </ScrollView>
+            <View style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+                bottom: '2%',
+                width: '100%',
+                height: 900,
+            }}>
+                <View>
+                    <View style={{ bottom: '50%' }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <Ionicons name="location" size={30} color='#000' />
+                            <Text style={{ fontSize: 25, fontWeight: 'bold' }}>Santana de Parnaiba - SP</Text>
                         </View>
                     </View>
-                )}
+                    <View style={styles.Search}>
+                        <View style={styles.iconSearch}>
+                            <Ionicons name="search" size={25} color='#0A3DC2' />
+                        </View>
+                        <TextInput placeholder="Pesquisar" style={styles.inputSearch} />
+                    </View>
+                </View>
+                <View style={{ flexDirection: 'row', bottom: '4%', alignItems: 'center' }}>
+                    <Text style={{ fontSize: 15, fontWeight: 'bold', right: 70 }}>Ultimos Visitados</Text>
+                    <VisitMore />
+                </View>
+                <View style={{ flexDirection: 'row', bottom: '1%', left: 10, }}>
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                        {
+                            visit.map((visits, index) => (
+                                <VisitButton visits={visits} key={index} />
+                            ))
+                        }
+                    </ScrollView>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', top: '7%' }}>
+                    <Text style={{ fontSize: 15, fontWeight: 'bold', right: 70 }}>Mais Procurados</Text>
+                    <FindMore />
+                </View>
+                <View style={{ flexDirection: 'row', top: '10%', left: 10 }}>
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                        {
+                            find.map((finds, index) => (
+                                <FindButton finds={finds} key={index} />
+                            ))
+                        }
+                    </ScrollView>
+                </View>
+                <View style={{ flexDirection: 'row', top: '17%', alignItems: 'center' }}>
+                    <Text style={{ fontSize: 15, fontWeight: 'bold', right: 50 }}>Melhores Avaliados</Text>
+                    <AvaliateMore />
+                </View>
+                <View style={{ flexDirection: 'row', top: '20%', left: 10 }}>
+                    <ScrollView horizontal>
+                        <FlatList
+                            horizontal
+                            style={{
+                                width: '100%',
+                                height: '100%',
+
+                            }}
+                            data={avaliateList}
+                            renderItem={({ item }) => {
+                                return (
+                                    <AvaliateButton data={item} />
+                                )
+                            }}
+                            keyExtractor={(item) => item.id}
+                            showsVerticalScrollIndicator={true}
+                        />
+                    </ScrollView>
+                </View>
+            </View>
         </ScrollView>
     );
 }

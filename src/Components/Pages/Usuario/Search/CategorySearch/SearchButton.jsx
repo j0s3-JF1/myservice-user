@@ -12,7 +12,7 @@ const CategoryButton = ({servico}) => {
 const styles = StyleSheet.create({
     buttonCategory: {
         width: '80%',
-        height: '5%',
+        height: 50,
         margin: 5,
         backgroundColor: '#FFF',
         justifyContent: 'center',

@@ -112,7 +112,7 @@ export default function Login() {
                     style={{ right: 30 }}
                 />
                 <Text style={{ top: 15, right: 30 }}>Lembre-me</Text>
-                <TouchableOpacity style={{ top: 15, left: 30 }}>
+                <TouchableOpacity style={{ top: 15, left: 30 }} onPress={() => navigation.navigate('Forgot')}>
                     <Text>Esqueceu a senha?</Text>
                 </TouchableOpacity>
             </View>
