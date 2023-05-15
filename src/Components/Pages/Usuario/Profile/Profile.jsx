@@ -26,7 +26,7 @@ export default function Profile() {
                     borderWidth: 1,
                     bottom: '25%',
                 }}
-                onPress={() => navigation.navigate('Edit')}
+                onPress={() => navigation.navigate('MenuEdit')}
             >
                 <FontAwesome5 name={'user-edit'} color={'#0A3DC2'} size={25} />
             </TouchableOpacity>

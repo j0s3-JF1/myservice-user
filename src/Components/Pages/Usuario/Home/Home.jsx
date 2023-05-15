@@ -26,7 +26,7 @@ export default function Home() {
     //URL -> Ultimos Procurados
     const URLfind = "https://myserviceserver.azurewebsites.net/api/empresa";
 
-    const [findLoaded] = useEffect(() => {
+    useEffect(() => {
         fetch(URLfind, {
             method: 'GET'
         })
@@ -77,7 +77,6 @@ export default function Home() {
     const [avaliateList, setAvaliateList] = useState(AvaliateAPI);
 
     //constante para carregamento de página
-    if (!findLoaded) return <Loading/>;
     return (
         <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
             <View style={{

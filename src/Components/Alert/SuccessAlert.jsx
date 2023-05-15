@@ -1,26 +1,20 @@
 import React, { useState } from 'react';
-import { View, Modal, Alert, StyleSheet, TouchableHighlight } from 'react-native';
+import { View, Alert, StyleSheet, TouchableHighlight } from 'react-native';
+import Modal from 'react-native-modal';
 
 // Modal de sucesso
 const SuccessAlert = () => {
-
-    const [showAlert, setShowAlert] = useState(true);
-
-    const handleShowAlert = () => {
-        setShowAlert(true);
-    };
-
-    const handleHideAlert = () => {
-        setShowAlert(false)
-    }
-
     return (
-        <Alert
-            visible={showAlert}
-            title="Success"
-            message="Cadastro efetuado com sucesso"
-            onPress={handleHideAlert}
-        />
+        <View>
+            <Modal isVisible={true}>
+                <View>
+                    <Text>Isso é um alerta!</Text>
+                    <TouchableHighlight>
+                        <Text>Fechar</Text>
+                    </TouchableHighlight>
+                </View>
+            </Modal>
+        </View>
     );
 }
 

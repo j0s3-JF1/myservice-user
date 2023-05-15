@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image, Switch } from "react-native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import Modal from 'react-native-modal';
 
 //Importe estilização
 import styles from "./Style";
@@ -9,11 +10,18 @@ import SuccessAlert from "../../../Alert/SuccessAlert";
 
 export default function Login() {
 
+
     const navigation = useNavigation();
+
+    const [ismodalvisible, setModalVisible] = useState(false);
+
+    const toggleModal = () => {
+        setModalVisible(!ismodalvisible);
+    };
 
     const showAlert = () => {
         <SuccessAlert/>
-    };
+    }
 
     //Password input
     const [password, setPassword] = useState('');
@@ -56,16 +64,16 @@ export default function Login() {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(body),
                 })
-                .then( response => {
-                    alert('Login Efetuado com sucesso')
-                })
-                .then(() => {
-                    navigation.navigate('Tab');
-                })
-                .catch(err => {
-                    console.error('Login não efetuado', err);
-                    alert('Email ou senha incorretos');
-                })
+                    .then(response => {
+                        alert('Login Efetuado com sucesso')
+                    })
+                    .then(() => {
+                        navigation.navigate('Tab');
+                    })
+                    .catch(err => {
+                        console.error('Login não efetuado', err);
+                        alert('Email ou senha incorretos');
+                    })
             })
         }
     }

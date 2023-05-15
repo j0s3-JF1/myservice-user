@@ -11,6 +11,7 @@ import Avaliate from "../Pages/SubTelas/AvaliateScreen/Avaliate";
 import EditScreen from "../Pages/SubTelas/EditProfile/EditScreen";
 import JobScreen from "../Pages/SubTelas/JobScreen/JobScreen";
 import ForgotPass from "../Pages/SubTelas/ForgotPassScreen/ForgotPass";
+import MenuProfile from "../Pages/SubTelas/MenuProfile/MenuProfile";
 
 
 export default function Routes(){
@@ -77,6 +78,13 @@ export default function Routes(){
             <Stack.Screen
                 name="Forgot"
                 component={ForgotPass}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="MenuEdit"
+                component={MenuProfile}
                 options={{
                     headerShown: false
                 }}
