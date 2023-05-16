@@ -7,21 +7,21 @@ import Modal from 'react-native-modal';
 //Importe estilização
 import styles from "./Style";
 import SuccessAlert from "../../../Alert/SuccessAlert";
+import AppLoad from "../../../AppLoad/AppLoad";
 
 export default function Login() {
 
+    //Loading de App
+    const [isLoadingApp, setLoadingApp] = useState(true);
 
+    useEffect(() => {
+        setTimeout( () => {
+            setLoadingApp(false);
+        }, 3000);
+    }, []);
+
+    //navegação
     const navigation = useNavigation();
-
-    const [ismodalvisible, setModalVisible] = useState(false);
-
-    const toggleModal = () => {
-        setModalVisible(!ismodalvisible);
-    };
-
-    const showAlert = () => {
-        <SuccessAlert/>
-    }
 
     //Password input
     const [password, setPassword] = useState('');
@@ -78,6 +78,11 @@ export default function Login() {
         }
     }
 
+    if(isLoadingApp)
+        return(
+            <AppLoad/>
+        );
+
     return (
         <View style={styles.container}>
             <Image source={require('../../../../../assets/MyService_Logo.png')} style={styles.Logo} />
@@ -131,7 +136,7 @@ export default function Login() {
                 <Text style={{ fontSize: 18 }}>Ou</Text>
             </View>
             <View style={styles.SocialMedia}>
-                <TouchableOpacity style={styles.buttonGoogle} onPress={showAlert}>
+                <TouchableOpacity style={styles.buttonGoogle}>
                     <Image source={require('../../../../../assets/google-icon.png')} style={styles.google} />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonFacebook}>

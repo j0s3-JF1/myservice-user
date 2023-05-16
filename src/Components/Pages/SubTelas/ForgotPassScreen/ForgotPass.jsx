@@ -1,8 +1,26 @@
-import React from "react";
+import React, {useState} from "react";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { View, StyleSheet, Text, Image, TextInput, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export default function ForgotPass() {
+
+    //navegação
+    const navigation = useNavigation();
+
+    //Email para redefinir
+    const [email, setEmail] = useState('')
+
+    const RedefinePass = () => {
+        if(email == ""){
+            alert("Insira um email para redefinir sua senha!");
+        }else {
+            navigation.navigate('Login');
+            alert("Email enviado, espere alguns minutos para receber sua nova senha")
+        }
+    }
+
+
     return (
         <View style={styles.container}>
             <Image
@@ -19,9 +37,10 @@ export default function ForgotPass() {
                     style={styles.Input}
                     placeholder='Email'
                     placeholderTextColor='#131212'
+                    onChangeText={(texto) => setEmail(texto)}
                 />
             </View>
-            <TouchableOpacity style={styles.redefineButton}>
+            <TouchableOpacity style={styles.redefineButton} onPress={RedefinePass}>
                 <Text style={{fontSize: 20, fontWeight: '700', color: '#FFF'}}>Redefinir</Text>
             </TouchableOpacity>
         </View>

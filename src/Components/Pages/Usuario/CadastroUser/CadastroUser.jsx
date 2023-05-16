@@ -8,13 +8,18 @@ import styles from "./Style";
 
 //importação de alert
 import SuccessAlert from "../../../Alert/SuccessAlert";
+import ErroAlert from "../../../Alert/ErroAlert";
 
 export default function CadastroUser() {
 
+    //constante de navegação
     const navigation = useNavigation();
 
+    //modal visible
+    const [ismodalvisible, setModalVisible] = useState(false);
+
     //Password input
-    const [hidePass, setHide] = useState(true)
+    const [hidePass, setHide] = useState(true);
 
     //Cadastro Input
     const [nome, setNome] = useState("");
@@ -29,25 +34,29 @@ export default function CadastroUser() {
         const body = { nome, sobrenome, email, senha };
 
         if (nome == "" || sobrenome == "" || email == "" || senha == "") {
-            alert('Preencha todos os campos');
-        }else{
+            return(
+                <ErroAlert
+                    visibled={true}
+                />
+            );
+        } else {
             if (senha == confirma) {
                 fetch("https://myserviceserver.azurewebsites.net/api/user", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(body)
+                    body: JSON.stringify(body),
                 })
-                .then((response) => {
-                    <SuccessAlert/>
-                })
-                .then(() => {
-                    navigation.navigate('Login')
-                })
-                .catch((error) => {
-                    console.log(error);
-                    alert("Erro ao cadastrar resultado");
-                });
-            } else{
+                    .then(() => {
+                        setModalVisible(true);
+                    })
+                    .then(() => {
+                        navigation.navigate('Login')
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        alert("Erro ao cadastrar resultado");
+                    });
+            } else {
                 alert('As senhas estão diferentes, por favor corrija-as')
             }
         }
@@ -57,6 +66,13 @@ export default function CadastroUser() {
     const LoginScreen = () => {
         navigation.navigate('Login')
     }
+
+    if (ismodalvisible)
+        return (
+            <SuccessAlert
+                visibled={ismodalvisible}
+            />
+        );
 
     return (
         <View style={styles.container}>

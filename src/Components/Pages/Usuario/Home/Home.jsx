@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, FlatList, ActivityIndicator } from "react-native";
+import {
+    View,
+    Text,
+    TextInput,
+    ScrollView,
+    FlatList,
+} from "react-native";
 import { Ionicons } from '@expo/vector-icons';
+import { PermissionsAndroid, Platform } from 'react-native';
+import Geolocation from 'react-native-geolocation-service';
 
 //Importe de estilização
 import styles from "./Style";
@@ -15,11 +23,11 @@ import Loading from "../../../Loading/Loading";
 import AvaliateMore from "./Veja Mais/AvaliateMore/AvaliateMore";
 
 //Importação de API´s
-import VisitAPI from './VisitButton/API/VisitAPI';
-import FindAPI from './FindButton/API/FindAPI';
 import AvaliateAPI from './AvaliateButton/API/AvaliateAPI';
 
 export default function Home() {
+
+    const [isLoading, setLoading] = useState(true);
 
     //Conexão com API -> Ultimos Procurados
     const [find, setFind] = useState([]);
@@ -32,6 +40,7 @@ export default function Home() {
         })
             .then((response) => response.json())
             .then((json) => setFind(json))
+            .then(() => setLoading(false))
             .catch((error) => {
                 console.log(error)
                 alert('Não houve busca')
@@ -49,6 +58,7 @@ export default function Home() {
         })
             .then((response) => response.json())
             .then((json) => setVisit(json))
+            .then(() => setLoading(false))
             .catch((error) => {
                 console.log(error)
                 alert('Não houve ultimos visitados')
@@ -76,7 +86,51 @@ export default function Home() {
     //Constante de listas vindas da API Local
     const [avaliateList, setAvaliateList] = useState(AvaliateAPI);
 
-    //constante para carregamento de página
+    //localização do usuario
+    async function requestLocationPermission() {
+        if (Platform.OS === 'android') {
+            try {
+                const granted = await PermissionsAndroid.request(
+                    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+                    {
+                        title: 'Permissão de Localização',
+                        message: 'Este aplicativo precisa acessar sua localização.',
+                        buttonNeutral: 'Pergunte-me depois',
+                        buttonNegative: 'Cancelar',
+                        buttonPositive: 'OK',
+                    }
+                );
+                if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+                    console.log('Permissão de localização concedida');
+                } else {
+                    console.log('Permissão de localização negada');
+                }
+            } catch (err) {
+                console.warn(err);
+            }
+        } else if (Platform.OS === 'ios') {
+            // Solicitar permissão de localização para dispositivos iOS
+        }
+
+        Geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+                console.log('Latitude:', latitude);
+                console.log('Longitude:', longitude);
+            },
+            (error) => {
+                console.warn('Erro ao obter a localização:', error.code, error.message);
+            },
+            { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+        );
+    }
+
+
+    if (isLoading)
+        return (
+            <Loading />
+        );
+
     return (
         <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
             <View style={{

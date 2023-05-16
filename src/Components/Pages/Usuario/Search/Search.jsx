@@ -6,12 +6,16 @@ import { Ionicons } from "@expo/vector-icons";
 import styles from "./Style";
 import CategoryButton from "./CategorySearch/SearchButton";
 import ProductButton from "./ProductSearch/ProductButton";
+import Loading from '../../../Loading/Loading';
 
 
 export default function Search() {
 
     //busca de serviços
     const [servicos, setServicos] = useState([]);
+
+    //loading
+    const [isloading, setLoading] = useState(false);
 
     useEffect(() => {
         fetch('https://myserviceserver.azurewebsites.net/api/categorias_', {
@@ -46,8 +50,7 @@ export default function Search() {
     const toogleSearch = () => {
         setSearch(!search);
     }
-
-
+    
     return (
         <View style={{ justifyContent: 'center', width: '100%', backgroundColor: '#F8F8F8' }}>
             <View style={styles.Search}>
