@@ -32,8 +32,8 @@ class Loading extends Component {
     
       render() {
         const opacity = this.opacityValue.interpolate({
-          inputRange: [0, 1],
-          outputRange: [0, 1],
+          inputRange: [0.4, 1],
+          outputRange: [0.4, 1],
         });
 
         return (

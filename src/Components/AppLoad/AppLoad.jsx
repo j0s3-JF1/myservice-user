@@ -30,8 +30,8 @@ class AppLoad extends Component {
 
     render() {
         const opacity = this.opacityValue.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, 1],
+            inputRange: [0.6, 1],
+            outputRange: [0.6, 1],
         });
 
         return (
@@ -47,8 +47,8 @@ class AppLoad extends Component {
                     source={require('../../../assets/MyService_white.png')}
                     style={{
                         opacity,
-                        width: '45%',
-                        height: '15%',
+                        width: '35%',
+                        height: '12%',
                         resizeMode: 'stretch',
                     }}
                 />
