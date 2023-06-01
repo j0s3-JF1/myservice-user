@@ -12,7 +12,10 @@ import EditScreen from "../Pages/SubTelas/EditProfile/EditScreen";
 import JobScreen from "../Pages/SubTelas/JobScreen/JobScreen";
 import ForgotPass from "../Pages/SubTelas/ForgotPassScreen/ForgotPass";
 import MenuProfile from "../Pages/SubTelas/MenuProfile/MenuProfile";
-
+import ServiceView from "../Pages/SubTelas/JobScreen/Servico/ServiceView/ServiceView";
+import ProductView from "../Pages/SubTelas/JobScreen/Produto/ProdutoView/ProdutoView";
+import AvaliacaoProduto from "../Pages/SubTelas/JobScreen/Produto/ProdutoView/Avaliação/Avaliacao";
+import AvaliacaoServico from "../Pages/SubTelas/JobScreen/Servico/ServiceView/Avaliação/Avaliacao";
 
 export default function Routes(){
     const Stack = createStackNavigator();
@@ -85,6 +88,35 @@ export default function Routes(){
             <Stack.Screen
                 name="MenuEdit"
                 component={MenuProfile}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="ServiceView"
+                component={ServiceView}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="ProductView"
+                component={ProductView}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="ProductAvaliate"
+                component={AvaliacaoProduto}
+                options={{
+                    headerShown: false
+                }}
+
+            />
+            <Stack.Screen
+                name="ServiceAvaliate"
+                component={AvaliacaoServico}
                 options={{
                     headerShown: false
                 }}

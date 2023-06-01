@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image, Switch } from "react-native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import Modal from 'react-native-modal';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import jwtDecode from "jwt-decode";
+import { ChecarLoginUsuario, SalvarJWT } from "./SalvarJWT/AuthContext";
 
 //Importe estilização
 import styles from "./Style";
@@ -11,25 +13,72 @@ import AppLoad from "../../../AppLoad/AppLoad";
 
 export default function Login() {
 
-    //Loading de App
-    const [isLoadingApp, setLoadingApp] = useState(true);
-
-    useEffect(() => {
-        setTimeout( () => {
-            setLoadingApp(false);
-        }, 3000);
-    }, []);
-
     //navegação
     const navigation = useNavigation();
 
-    //Password input
+    //Loading de App
+    const [isLoadingApp, setLoadingApp] = useState(true);
+
+    //Login do usuario + password hidden
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+
     const [password, setPassword] = useState('');
     const [hidePass, setHide] = useState(true);
 
     // Switch Button
     const [isEnable, setEnable] = useState(true);
     const [text, setText] = useState(null);
+
+
+
+    function Navegar(rota) {
+        navigation.navigate(rota)
+    }
+
+    async function VerificarLogin() {
+        const usuarioLogado = await ChecarLoginUsuario();
+        if (usuarioLogado) {
+            Navegar('Tab')
+        }
+    };
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoadingApp(false);
+        }, 3000);
+    }, []);
+
+    function Login() {
+        if (email == "" || senha == "") {
+            alert('Preencha os campos para efetuar o login!')
+        } else {
+
+            fetch('https://my-service-server.azurewebsites.net/api/Auth', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: new URLSearchParams({
+                    email,
+                    senha
+                }),
+            })
+                .then((response) => response.json())
+                .then((json) => {
+                    SalvarJWT(json.token);
+                })
+                .then(() => navigation.navigate('Tab'))
+                .then(() => {
+                    alert("Login Efetuado com sucesso!")
+                })
+                .catch((err) => {
+                    console.log(err);
+                    alert('Usuario e/ou senha invalidos!')
+                })
+        }
+    }
+
 
     const tootleSwitch = () => {
         if (isEnable) {
@@ -46,41 +95,11 @@ export default function Login() {
         navigation.navigate('Cadastro')
     }
 
-    //Login do usuario
-    const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
 
-    function Login() {
 
-        const body = { email, senha }
-
-        if (email == "" && password == "") {
-            alert('Preencha os campos!');
-        }
-        else {
-            useEffect(() => {
-                fetch('https://myserviceserver.azurewebsites.net/api/userlogin', {
-                    method: 'GET',
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(body),
-                })
-                    .then(response => {
-                        alert('Login Efetuado com sucesso')
-                    })
-                    .then(() => {
-                        navigation.navigate('Tab');
-                    })
-                    .catch(err => {
-                        console.error('Login não efetuado', err);
-                        alert('Email ou senha incorretos');
-                    })
-            })
-        }
-    }
-
-    if(isLoadingApp)
-        return(
-            <AppLoad/>
+    if (isLoadingApp)
+        return (
+            <AppLoad />
         );
 
     return (
@@ -92,7 +111,12 @@ export default function Login() {
                     <View style={styles.emailIcon}>
                         <AntDesign name="mail" size={24} color="blue" />
                     </View>
-                    <TextInput style={styles.Input} placeholder='Email' placeholderTextColor='#131212' onChange={setEmail} />
+                    <TextInput
+                        style={styles.Input}
+                        placeholder='Email'
+                        placeholderTextColor='#131212'
+                        onChangeText={(texto) => setEmail(texto)}
+                    />
                 </View>
                 <View style={styles.passwordArea}>
                     <View style={styles.lockIcon}>
@@ -102,7 +126,7 @@ export default function Login() {
                         style={styles.Input}
                         placeholder='Senha'
                         placeholderTextColor='#131212'
-                        onChangeText={(texto) => setPassword(texto)}
+                        onChangeText={(texto) => setSenha(texto)}
                         secureTextEntry={hidePass}
                     />
                     <TouchableOpacity style={styles.icon} onPress={() => setHide(!hidePass)}>
@@ -129,7 +153,7 @@ export default function Login() {
                     <Text>Esqueceu a senha?</Text>
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Tab')}>
+            <TouchableOpacity style={styles.loginButton} onPress={Login}>
                 <Text style={styles.textButton}>LOGIN</Text>
             </TouchableOpacity>
             <View style={styles.info}>

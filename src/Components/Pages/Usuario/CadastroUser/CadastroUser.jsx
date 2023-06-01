@@ -34,14 +34,10 @@ export default function CadastroUser() {
         const body = { nome, sobrenome, email, senha };
 
         if (nome == "" || sobrenome == "" || email == "" || senha == "") {
-            return(
-                <ErroAlert
-                    visibled={true}
-                />
-            );
+            alert('Usuario Cadastrado com sucesso!')
         } else {
             if (senha == confirma) {
-                fetch("https://myserviceserver.azurewebsites.net/api/user", {
+                fetch("https://my-service-server.azurewebsites.net/api/User", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(body),
@@ -76,12 +72,19 @@ export default function CadastroUser() {
 
     return (
         <View style={styles.container}>
-            <Image source={require('../../../../../assets/MyService_Logo.png')} style={styles.Logo} />
+            <Image
+                source={require('../../../../../assets/MyService_Logo.png')}
+                style={styles.Logo}
+            />
             <Text style={styles.title}>CADASTRAR-SE</Text>
             <View style={styles.containerInput}>
                 <View style={styles.nameArea}>
                     <View style={styles.nameIcon}>
-                        <AntDesign name="user" size={24} color="blue" />
+                        <AntDesign
+                            name="user"
+                            size={24}
+                            color="blue"
+                        />
                     </View>
                     <TextInput
                         style={styles.Input}
@@ -92,7 +95,11 @@ export default function CadastroUser() {
                 </View>
                 <View style={styles.secondNameArea}>
                     <View style={styles.secondIcon}>
-                        <AntDesign name="user" size={24} color="blue" />
+                        <AntDesign
+                            name="user"
+                            size={24}
+                            color="blue"
+                        />
                     </View>
                     <TextInput
                         style={styles.Input}
@@ -103,7 +110,11 @@ export default function CadastroUser() {
                 </View>
                 <View style={styles.emailArea}>
                     <View style={styles.emailIcon}>
-                        <AntDesign name="mail" size={24} color="blue" />
+                        <AntDesign
+                            name="mail"
+                            size={24}
+                            color="blue"
+                        />
                     </View>
                     <TextInput
                         style={styles.Input}
@@ -114,7 +125,11 @@ export default function CadastroUser() {
                 </View>
                 <View style={styles.passArea}>
                     <View style={styles.lockIcon}>
-                        <AntDesign name="lock1" size={25} color="blue" />
+                        <AntDesign
+                            name="lock1"
+                            size={25}
+                            color="blue"
+                        />
                     </View>
                     <TextInput
                         style={styles.Input}
@@ -126,15 +141,27 @@ export default function CadastroUser() {
                     <TouchableOpacity style={styles.icon} onPress={() => setHide(!hidePass)}>
                         {
                             hidePass ?
-                                <Ionicons name="eye" color='lightgray' size={25} />
+                                <Ionicons
+                                    name="eye"
+                                    color='lightgray'
+                                    size={25}
+                                />
                                 :
-                                <Ionicons name="eye-off" color='lightgray' size={25} />
+                                <Ionicons
+                                    name="eye-off"
+                                    color='lightgray'
+                                    size={25}
+                                />
                         }
                     </TouchableOpacity>
                 </View>
                 <View style={styles.cofirmArea}>
                     <View style={styles.lockIcon}>
-                        <AntDesign name="lock1" size={25} color="blue" />
+                        <AntDesign
+                            name="lock1"
+                            size={25}
+                            color="blue"
+                        />
                     </View>
                     <TextInput
                         style={styles.Input}
@@ -146,9 +173,17 @@ export default function CadastroUser() {
                     <TouchableOpacity style={styles.icon} onPress={() => setHide(!hidePass)}>
                         {
                             hidePass ?
-                                <Ionicons name="eye" color='lightgray' size={25} />
+                                <Ionicons
+                                    name="eye"
+                                    color='lightgray'
+                                    size={25}
+                                />
                                 :
-                                <Ionicons name="eye-off" color='lightgray' size={25} />
+                                <Ionicons
+                                    name="eye-off"
+                                    color='lightgray'
+                                    size={25}
+                                />
                         }
                     </TouchableOpacity>
                 </View>

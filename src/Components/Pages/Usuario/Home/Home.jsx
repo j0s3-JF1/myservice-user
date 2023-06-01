@@ -32,7 +32,7 @@ export default function Home() {
     //Conexão com API -> Ultimos Procurados
     const [find, setFind] = useState([]);
     //URL -> Ultimos Procurados
-    const URLfind = "https://myserviceserver.azurewebsites.net/api/empresa";
+    const URLfind = "https://my-service-server.azurewebsites.net/api/empresa";
 
     useEffect(() => {
         fetch(URLfind, {
@@ -50,7 +50,7 @@ export default function Home() {
     //Conexão com API -> Ultimos visitados
     const [visit, setVisit] = useState([]);
     //URL -> Ultimos visitados
-    const URLvisit = "https://myserviceserver.azurewebsites.net/api/categorias_";
+    const URLvisit = "https://my-service-server.azurewebsites.net/api/categorias_";
 
     useEffect(() => {
         fetch(URLvisit, {

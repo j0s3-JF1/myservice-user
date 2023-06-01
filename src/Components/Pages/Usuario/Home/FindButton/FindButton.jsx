@@ -14,6 +14,7 @@ const FindButton = ({ finds }) => {
 
     //constante de parametros
     const parameters = {
+        id: finds.id,
         nome: finds.nome,
         empresa: finds.empresa,
     }
