@@ -10,6 +10,7 @@ import { ChecarLoginUsuario, SalvarJWT } from "./SalvarJWT/AuthContext";
 import styles from "./Style";
 import SuccessAlert from "../../../Alert/SuccessAlert";
 import AppLoad from "../../../AppLoad/AppLoad";
+import axios from "axios";
 
 export default function Login() {
 
@@ -30,43 +31,37 @@ export default function Login() {
     const [isEnable, setEnable] = useState(true);
     const [text, setText] = useState(null);
 
-
-
-    function Navegar(rota) {
-        navigation.navigate(rota)
-    }
-
     async function VerificarLogin() {
         const usuarioLogado = await ChecarLoginUsuario();
         if (usuarioLogado) {
-            Navegar('Tab')
+            navigation.navigate("Tab");
         }
     };
 
     useEffect(() => {
         setTimeout(() => {
             setLoadingApp(false);
+            VerificarLogin();
         }, 3000);
     }, []);
+    
 
     function Login() {
         if (email == "" || senha == "") {
             alert('Preencha os campos para efetuar o login!')
         } else {
 
-            fetch('https://my-service-server.azurewebsites.net/api/Auth', {
-                method: 'POST',
+            const formData = new URLSearchParams();
+            formData.append('email', email);
+            formData.append('senha', senha);
+            console.log(formData)
+            axios.post('https://my-service-server.azurewebsites.net/api/Auth/login', formData.toString(), {
                 headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
+                    'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: new URLSearchParams({
-                    email,
-                    senha
-                }),
             })
-                .then((response) => response.json())
-                .then((json) => {
-                    SalvarJWT(json.token);
+                .then(response => {
+                    SalvarJWT(response.data.token);
                 })
                 .then(() => navigation.navigate('Tab'))
                 .then(() => {

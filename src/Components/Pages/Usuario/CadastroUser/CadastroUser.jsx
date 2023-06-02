@@ -37,7 +37,7 @@ export default function CadastroUser() {
             alert('Usuario Cadastrado com sucesso!')
         } else {
             if (senha == confirma) {
-                fetch("https://my-service-server.azurewebsites.net/api/User", {
+                fetch("https://my-service-server.azurewebsites.net/api/Auth/Cadastro", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(body),

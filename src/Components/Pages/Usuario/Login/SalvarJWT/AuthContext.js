@@ -4,7 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 
 export async function SalvarJWT( jwtData ){
-
+    debugger;
     //Constante para armazenar o jwt do usuario
     const userData = jwt(jwtData);
 
