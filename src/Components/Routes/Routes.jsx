@@ -16,6 +16,8 @@ import ServiceView from "../Pages/SubTelas/JobScreen/Servico/ServiceView/Service
 import ProductView from "../Pages/SubTelas/JobScreen/Produto/ProdutoView/ProdutoView";
 import AvaliacaoProduto from "../Pages/SubTelas/JobScreen/Produto/ProdutoView/Avaliação/Avaliacao";
 import AvaliacaoServico from "../Pages/SubTelas/JobScreen/Servico/ServiceView/Avaliação/Avaliacao";
+import ProductResult from "../Pages/SubTelas/SearchScreen/Product/SearchResult";
+import ServiceResult from "../Pages/SubTelas/SearchScreen/Service/SearchResult";
 
 export default function Routes(){
     const Stack = createStackNavigator();
@@ -117,6 +119,21 @@ export default function Routes(){
             <Stack.Screen
                 name="ServiceAvaliate"
                 component={AvaliacaoServico}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="ProductResult"
+                component={ProductResult}
+                options={{
+                    headerShown: false
+                }}
+            />
+
+            <Stack.Screen
+                name="ServiceResult"
+                component={ServiceResult}
                 options={{
                     headerShown: false
                 }}

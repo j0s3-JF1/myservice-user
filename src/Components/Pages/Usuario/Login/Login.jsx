@@ -4,13 +4,15 @@ import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import jwtDecode from "jwt-decode";
+import axios from "axios";
 import { ChecarLoginUsuario, SalvarJWT } from "./SalvarJWT/AuthContext";
 
 //Importe estilização
 import styles from "./Style";
+
+//importação de componentes
 import SuccessAlert from "../../../Alert/SuccessAlert";
 import AppLoad from "../../../AppLoad/AppLoad";
-import axios from "axios";
 
 export default function Login() {
 
@@ -28,29 +30,45 @@ export default function Login() {
     const [hidePass, setHide] = useState(true);
 
     // Switch Button
-    const [isEnable, setEnable] = useState(true);
+    const [isEnable, setEnable] = useState(false);
     const [text, setText] = useState(null);
 
+    //Função Assincrona para verificação de Token de Login
     async function VerificarLogin() {
-        const usuarioLogado = await ChecarLoginUsuario();
-        if (usuarioLogado) {
-            navigation.navigate("Tab");
+        try {
+            const usuarioLogado = await ChecarLoginUsuario();
+            // if (usuarioLogado) {
+            //     navigation.navigate("Tab");
+            // }
+            if (usuarioLogado) {
+                const decodedToken = jwtDecode(usuarioLogado);
+                console.log('Token decoded ', decodedToken);
+            } else {
+                console.log('No JWT token found')
+                navigation.navigate('Login');
+            }
+        } catch (error) {
+            console.log('Error JWT Token: ', error);
         }
+
     };
+
+    function temporario() {
+        navigation.navigate('Tab');
+    }
 
     useEffect(() => {
         setTimeout(() => {
             setLoadingApp(false);
-            VerificarLogin();
         }, 3000);
     }, []);
-    
 
+    //Função para efetuar Login
     function Login() {
+
         if (email == "" || senha == "") {
             alert('Preencha os campos para efetuar o login!')
         } else {
-
             const formData = new URLSearchParams();
             formData.append('email', email);
             formData.append('senha', senha);
@@ -60,10 +78,10 @@ export default function Login() {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
             })
-                .then(response => {
+                .then((response) => {
                     SalvarJWT(response.data.token);
                 })
-                .then(() => navigation.navigate('Tab'))
+                .then(() => navigation.navigate("Tab"))
                 .then(() => {
                     alert("Login Efetuado com sucesso!")
                 })
@@ -148,7 +166,7 @@ export default function Login() {
                     <Text>Esqueceu a senha?</Text>
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.loginButton} onPress={Login}>
+            <TouchableOpacity style={styles.loginButton} onPress={temporario}>
                 <Text style={styles.textButton}>LOGIN</Text>
             </TouchableOpacity>
             <View style={styles.info}>

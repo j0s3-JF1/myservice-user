@@ -18,7 +18,7 @@ export default function Search() {
     const [isloading, setLoading] = useState(false);
 
     useEffect(() => {
-        fetch('https://myserviceserver.azurewebsites.net/api/categorias_', {
+        fetch('https://my-service-server.azurewebsites.net/api/categorias_', {
             method: 'GET',
         })
             .then((response) => response.json())
@@ -33,7 +33,7 @@ export default function Search() {
     const [produtos, setProdutos] = useState([]);
 
     useEffect(() => {
-        fetch('https://myserviceserver.azurewebsites.net/api/categoriap_', {
+        fetch('https://my-service-server.azurewebsites.net/api/categoriap_', {
             method: 'GET'
         })
             .then((response) => response.json())

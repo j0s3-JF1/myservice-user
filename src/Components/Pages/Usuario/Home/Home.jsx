@@ -5,6 +5,7 @@ import {
     TextInput,
     ScrollView,
     FlatList,
+    PixelRatio,
 } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { PermissionsAndroid, Platform } from 'react-native';
@@ -138,7 +139,7 @@ export default function Home() {
                 alignItems: 'center',
                 bottom: '2%',
                 width: '100%',
-                height: 900,
+                height: 900
             }}>
                 <View>
                     <View style={{ bottom: '50%' }}>

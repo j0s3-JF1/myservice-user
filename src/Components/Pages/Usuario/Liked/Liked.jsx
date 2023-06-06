@@ -24,7 +24,6 @@ export default function Liked() {
                 height: 2,
             }} />
             <View>
-
             </View>
         </View>
     );

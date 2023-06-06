@@ -28,7 +28,7 @@ export default function EditScreen() {
     const DataUpdate = () => {
         const body = { id, nome, sobrenome, email, senha }
 
-        fetch('https://myserviceserver.azurewebsites.net/api/user', {
+        fetch('https://my-service-server.azurewebsites.net/api/user', {
             method: 'PUT',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body)

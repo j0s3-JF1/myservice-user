@@ -1,11 +1,11 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, PixelRatio } from "react-native";
 
 const styles = StyleSheet.create({
 
     container:{
         alignItems: 'center',
         width: '100%',
-        height: 1550,
+        paddingBottom: PixelRatio.getPixelSizeForLayoutSize(40),
         top: '2%'
     },
 

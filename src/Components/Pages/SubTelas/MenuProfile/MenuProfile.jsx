@@ -7,11 +7,11 @@ const MenuProfile = () => {
 
     const navigation = useNavigation();
 
-    const id = 17;
+    const id = 1;
 
     const DeletarUsuario = () => {
 
-        fetch("https://myserviceserver.azurewebsites.net/api/user/" + id, {
+        fetch("https://my-service-server.azurewebsites.net/api/user/" + id, {
             method: 'DELETE',
             headers: {
                 Accept: 'application/json',

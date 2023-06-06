@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { TouchableOpacity, Text, Image, View } from "react-native";
+import { TouchableOpacity, Text, Image, View, PixelRatio } from "react-native";
 import { StyleSheet } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from "@expo/vector-icons";
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
+        marginLeft: PixelRatio.getPixelSizeForLayoutSize(5),
     },
 })
 

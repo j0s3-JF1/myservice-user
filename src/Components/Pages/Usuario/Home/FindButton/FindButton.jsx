@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { TouchableOpacity, Text, Image, View, StyleSheet } from "react-native";
+import { TouchableOpacity, Text, Image, View, StyleSheet, PixelRatio } from "react-native";
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 
@@ -57,7 +57,8 @@ const styles = StyleSheet.create({
         elevation: 5,
         borderRadius: 15,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginLeft: PixelRatio.getPixelSizeForLayoutSize(5)
     },
 
 })

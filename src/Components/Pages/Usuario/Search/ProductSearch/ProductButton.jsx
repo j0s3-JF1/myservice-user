@@ -1,9 +1,21 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
 const ProductButton = ({produto}) => {
+
+    //navegação + parametros
+    const navigation = useNavigation();
+
+    const params = {
+        categoria: produto.categoria,
+    }
+
     return(
-        <TouchableOpacity style={styles.buttonCategory}>
+        <TouchableOpacity 
+            style={styles.buttonCategory}
+            onPress={() => navigation.navigate('ProductResult', params)}
+        >
             <Text>{produto.categoria}</Text>
         </TouchableOpacity>
     )
