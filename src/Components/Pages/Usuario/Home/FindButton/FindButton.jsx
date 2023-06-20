@@ -17,12 +17,13 @@ const FindButton = ({ finds }) => {
         id: finds.id,
         nome: finds.nome,
         empresa: finds.empresa,
+        imagem: finds.imagem,
     }
 
     return (
         <TouchableOpacity style={styles.buttonFind} onPress={() => navigation.navigate('Job', parameters)}>
             <Image
-                source={require('../../../../../../assets/eletricista.jpeg')}
+                source={{uri: finds.imagem}}
                 style={{
                     width: 250,
                     height: 200,

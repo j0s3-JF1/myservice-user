@@ -9,7 +9,7 @@ const ServiceView = () => {
     const route = useRoute();
 
     //Parametro
-    const { nome, categoria, descricao, preco } = route.params;
+    const { nome, categoria, descricao, preco, imagem } = route.params;
 
     //rota para link de rede social
     const LinkInstagram = () => {
@@ -22,6 +22,27 @@ const ServiceView = () => {
 
     return (
         <View style={styles.container}>
+            <View
+                style={{
+                    width: PixelRatio.getPixelSizeForLayoutSize(60),
+                    height: PixelRatio.getPixelSizeForLayoutSize(60),
+                    backgroundColor: '#FFF',
+                    borderRadius: PixelRatio.getPixelSizeForLayoutSize(50),
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    bottom: PixelRatio.getPixelSizeForLayoutSize(20)
+                }}
+            >
+                <Image
+                    style={{
+                        width: PixelRatio.getPixelSizeForLayoutSize(55),
+                        height: PixelRatio.getPixelSizeForLayoutSize(55),
+                        borderRadius: PixelRatio.getPixelSizeForLayoutSize(50)
+                    }}
+
+                    source={{ uri: imagem }}
+                />
+            </View>
             <Text style={styles.titleNome}>
                 {nome}
             </Text>
@@ -54,7 +75,7 @@ const ServiceView = () => {
                 style={{
                     flexDirection: 'row',
                     justifyContent: 'space-evenly',
-                    top: PixelRatio.getPixelSizeForLayoutSize(110),
+                    top: PixelRatio.getPixelSizeForLayoutSize(80),
                     width: '30%',
                 }}
             >

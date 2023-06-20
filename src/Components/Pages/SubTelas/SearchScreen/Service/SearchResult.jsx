@@ -30,6 +30,7 @@ export default function SearchResult() {
     
     //Resultado dos servicos do Trabalhador
     const [work, SetWork] = useState([]);
+
     useEffect(() => {
         fetch('https://my-service-server.azurewebsites.net/api/Categorias_/Trabalhador?categoria=' + categoria, {
             method: 'GET'

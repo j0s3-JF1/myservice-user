@@ -33,7 +33,7 @@ export default function Home() {
     //Conexão com API -> Ultimos Procurados
     const [find, setFind] = useState([]);
     //URL -> Ultimos Procurados
-    const URLfind = "https://my-service-server.azurewebsites.net/api/empresa";
+    const URLfind = "https://my-service-server.azurewebsites.net/api/Trabalhador";
 
     useEffect(() => {
         fetch(URLfind, {

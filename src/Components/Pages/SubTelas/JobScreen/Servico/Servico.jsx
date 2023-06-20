@@ -13,6 +13,7 @@ const Servico = ({ service }) => {
         categoria: service.servico_Categoria,
         descricao: service.servico_Descricao,
         preco: service.servico_Preco,
+        imagem: service.servico_Imagem,
     }
 
 

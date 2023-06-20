@@ -22,6 +22,9 @@ export default function Login() {
     //Loading de App
     const [isLoadingApp, setLoadingApp] = useState(true);
 
+    //Modal
+    const [isModalVisible, setModalVisible] = useState(false);
+
     //Login do usuario + password hidden
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
@@ -34,34 +37,26 @@ export default function Login() {
     const [text, setText] = useState(null);
 
     //Função Assincrona para verificação de Token de Login
-    async function VerificarLogin() {
-        try {
-            const usuarioLogado = await ChecarLoginUsuario();
-            // if (usuarioLogado) {
-            //     navigation.navigate("Tab");
-            // }
-            if (usuarioLogado) {
-                const decodedToken = jwtDecode(usuarioLogado);
-                console.log('Token decoded ', decodedToken);
-            } else {
-                console.log('No JWT token found')
-                navigation.navigate('Login');
-            }
-        } catch (error) {
-            console.log('Error JWT Token: ', error);
-        }
+    
+    useEffect(() => {
+        VerificarLogin();
+    }, [])
 
+    async function VerificarLogin(){
+        
+        //Navegação após verificar login
+    
+        // Constante para verificar token do usuario
+        const usuariologado = await ChecarLoginUsuario();
+        if (usuariologado) {
+            navigation.navigate('Tab');
+        }
+    
     };
 
     function temporario() {
-        navigation.navigate('Tab');
+        ''
     }
-
-    useEffect(() => {
-        setTimeout(() => {
-            setLoadingApp(false);
-        }, 3000);
-    }, []);
 
     //Função para efetuar Login
     function Login() {
@@ -108,11 +103,9 @@ export default function Login() {
         navigation.navigate('Cadastro')
     }
 
-
-
-    if (isLoadingApp)
-        return (
-            <AppLoad />
+    if(isLoadingApp == true)
+        return(
+            <AppLoad/>
         );
 
     return (
@@ -166,7 +159,7 @@ export default function Login() {
                     <Text>Esqueceu a senha?</Text>
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.loginButton} onPress={temporario}>
+            <TouchableOpacity style={styles.loginButton} onPress={Login}>
                 <Text style={styles.textButton}>LOGIN</Text>
             </TouchableOpacity>
             <View style={styles.info}>

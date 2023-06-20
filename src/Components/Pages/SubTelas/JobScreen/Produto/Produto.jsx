@@ -13,6 +13,7 @@ const Trabalho = ({ work }) => {
         categoria: work.produto_Categoria,
         descricao: work.produto_Descricao,
         preco: work.produto_Preco,
+        imagem: work.produto_Imagem,
     }
 
     return (

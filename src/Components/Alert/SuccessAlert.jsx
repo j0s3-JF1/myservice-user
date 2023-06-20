@@ -4,35 +4,40 @@ import { View, StyleSheet, TouchableOpacity, Text, Modal } from 'react-native';
 // Modal de sucesso
 const SuccessAlert = ({ visibled, }) => {
 
-    const [isModalVisible, setModalVisible] = useState(visibled);
+    const [closeModal, setCloseModal] = useState(!visibled)
+
+    function closed(){
+        if (visibled == true) {
+            visibled = false
+        }
+    }
 
     return (
-        <View style={styles.container}>
             <Modal
-                visible={isModalVisible}
+                visible={visibled}
                 animationType="fade"
                 transparent={true}
-                onRequestClose={() => setModalVisible(false)}
             >
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <View style={styles.container1}>
                     <View style={{ backgroundColor: 'white', padding: 20, justifyContent: 'center', alignItems: 'center' }}>
                         <Text>Modal de Cadastro</Text>
-                        <TouchableOpacity onPress={() => setModalVisible(false)} >
+                        <TouchableOpacity onPress={closed} >
                             <Text>Fechar</Text>    
                         </TouchableOpacity>
                     </View>
                 </View>
             </Modal>
-        </View>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
+    container1: {
         width: '100%',
         height: '100%',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        position: 'absolute',
+        backgroundColor: 'rgba(0,0,0,0.2)'
     },
 })
 

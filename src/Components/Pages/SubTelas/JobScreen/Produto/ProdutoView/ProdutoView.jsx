@@ -12,8 +12,6 @@ import {
     SafeAreaView
 } from "react-native";
 import { AntDesign, Entypo, FontAwesome, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import ImageProduct from "../../../../../ImageProduct/ImageProduct";
-
 
 const ProductView = () => {
 
@@ -24,7 +22,7 @@ const ProductView = () => {
     const route = useRoute();
 
     //parametros
-    const { id, nome, categoria, descricao, preco } = route.params
+    const { id, nome, categoria, descricao, preco, imagem } = route.params
 
     const params = {
         ident: id,
@@ -42,7 +40,7 @@ const ProductView = () => {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity
+            {/* <TouchableOpacity
                 style={{
                     bottom: PixelRatio.getPixelSizeForLayoutSize(70),
                     left: PixelRatio.getPixelSizeForLayoutSize(60)
@@ -55,13 +53,32 @@ const ProductView = () => {
                     color={'#F8F8F8'}
                     size={35}
                 />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <View
                 style={{
                     bottom: PixelRatio.getPixelSizeForLayoutSize(30)
                 }}
             >
-                <ImageProduct/>
+                <View
+                    style={{
+                        width: PixelRatio.getPixelSizeForLayoutSize(60),
+                        height: PixelRatio.getPixelSizeForLayoutSize(60),
+                        backgroundColor: '#FFF',
+                        borderRadius: PixelRatio.getPixelSizeForLayoutSize(50),
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}
+                >
+                    <Image
+                        style={{
+                            width: PixelRatio.getPixelSizeForLayoutSize(55),
+                            height: PixelRatio.getPixelSizeForLayoutSize(55),
+                            borderRadius: PixelRatio.getPixelSizeForLayoutSize(50)
+                        }}
+
+                        source={{uri: imagem}}
+                    />
+                </View>
             </View>
             <View
                 style={{

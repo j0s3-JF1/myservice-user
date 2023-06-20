@@ -27,7 +27,7 @@ export default function JobScreen() {
     const route = useRoute();
 
     //constante de valores vindo das rotas
-    const { id, nome, empresa } = route.params;
+    const { id, nome, empresa, imagem } = route.params;
 
     //Carregar tela
     const [isLoading, setLoading] = useState(true);
@@ -36,7 +36,7 @@ export default function JobScreen() {
     const [trabalhos, setTrabalho] = useState([]);
 
     useEffect(() => {
-        fetch('https://my-service-server.azurewebsites.net/api/empresaproduto?id=' + id, {
+        fetch('https://my-service-server.azurewebsites.net/api/TrabalhadorProdutos/Empresa?id=' + id, {
             method: 'GET',
         })
             .then((response) => response.json())
@@ -52,7 +52,7 @@ export default function JobScreen() {
     const [servicos, setServicos] = useState([]);
 
     useEffect(() => {
-        fetch('https://myserviceserver.azurewebsites.net/api/empresaservico?id=' + id, {
+        fetch('https://my-service-server.azurewebsites.net/api/TrabalhadorServico/Empresa?id=' + id, {
             method: 'GET',
         })
             .then((response) => response.json())
@@ -95,7 +95,7 @@ export default function JobScreen() {
                     }}
                 >
                     <Image
-                        source={require('../../../../../assets/eletricista.jpeg')}
+                        source={{uri: imagem }}
                         style={{
                             borderRadius: 100,
                             width: PixelRatio.getPixelSizeForLayoutSize(50),
