@@ -51,3 +51,9 @@ export async function ChecarLoginUsuario(){
 
     return true;
 }
+
+export async function DadosUsuario(){
+
+    return JSON.parse( await AsyncStorage.getItem("@userData") );
+    
+}

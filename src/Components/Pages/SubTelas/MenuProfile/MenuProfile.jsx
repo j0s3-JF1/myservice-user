@@ -2,16 +2,27 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, TouchableOpacity, Image } from "react-native";
 import { Alert } from "react-native";
+import { DadosUsuario } from "../../Usuario/Login/SalvarJWT/AuthContext";
 
 const MenuProfile = () => {
 
     const navigation = useNavigation();
 
-    const id = 1;
+    //Dados Usuario
+    const [usuario, setUsuario] = useState("");
+
+    async function PreencherDados() {
+        const jwt = await DadosUsuario();
+        setUsuario(jwt);
+    }
+
+    useEffect(() => {
+        PreencherDados();
+    }, []);
 
     const DeletarUsuario = () => {
 
-        fetch("https://my-service-server.azurewebsites.net/api/user/" + id, {
+        fetch("https://my-service-server.azurewebsites.net/api/user/" + usuario.ID, {
             method: 'DELETE',
             headers: {
                 Accept: 'application/json',

@@ -27,30 +27,31 @@ export default function SearchResult() {
     const toogleSearch = () => {
         setSearch(!search);
     }
-    
+
     //Resultado dos servicos do Trabalhador
-    const [work, SetWork] = useState([]);
+    const [work, setTrabalho] = useState([]);
 
     useEffect(() => {
-        fetch('https://my-service-server.azurewebsites.net/api/Categorias_/Trabalhador?categoria=' + categoria, {
-            method: 'GET'
-        })
-        .then((response) => response.json())
-        .then((json) => SetWork(json))
-        .catch((err) => {
-            console.log(err);
-            alert('Nenhum Serviço Encontrado!');
-        })
-    }, []);
-    
-    //Resultado dos servidos de Empresa
-    const [enterprise, SetEnterprise] = useState([]);
-    useEffect(() => {
-        fetch('https://my-service-server.azurewebsites.net/api/Categorias_/Empresa?categoria=' + categoria, {
+        alert('Executou')
+        fetch('https://my-service-server.azurewebsites.net/api/Categorias_/Trabalhador?categoria=delivery', {
             method: 'GET'
         })
             .then((response) => response.json())
-            .then((json) => SetEnterprise(json))
+            .then((json) => setTrabalho(json))
+            .catch((err) => {
+                console.log(err);
+                alert('Nenhum Serviço Encontrado!');
+            })
+    }, []);
+
+    //Resultado dos servidos de Empresa
+    const [enterprise, setEnterprise] = useState([]);
+    useEffect(() => {
+        fetch('https://my-service-server.azurewebsites.net/api/Categorias_/Empresa?categoria=delivery', {
+            method: 'GET'
+        })
+            .then((response) => response.json())
+            .then((json) => setEnterprise(json))
             .catch((err) => {
                 console.log(err);
                 alert('Nenhum Serviço Encontrado');

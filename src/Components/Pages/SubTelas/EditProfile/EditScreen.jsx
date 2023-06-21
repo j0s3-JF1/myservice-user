@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import { TextInput } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
@@ -16,9 +16,20 @@ export default function EditScreen() {
     //navegação
     const navigation = useNavigation();
 
+    //Dados do usuario
+    const [usuario, setUsuario] = useState("");
+
+    async function PreencherDados() {
+        const jwt = await DadosUsuario();
+        setUsuario(jwt);
+    }
+
+    useEffect(() => {
+        PreencherDados();
+    }, []);
+
     //campos de informações
-    
-    const id = 1 // valor virá apartir do token do usuario
+    const id = usuario.ID;
     const [nome, setNome] = useState("");
     const [sobrenome, setSobrenome] = useState("")
     const [email, setEmail] = useState("");

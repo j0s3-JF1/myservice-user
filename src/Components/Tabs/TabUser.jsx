@@ -46,16 +46,6 @@ export default function Tabs() {
                 }}
             />
             <Tab.Screen
-                name="Liked"
-                component={Liked}
-                options={{
-                    headerShown: false,
-                    tabBarIcon: () => (
-                        <Ionicons name="heart" color={"#0A3DC2"} size={25} />
-                    ),
-                }}
-            />
-            <Tab.Screen
                 name="Profile"
                 component={Profile}
                 options={{

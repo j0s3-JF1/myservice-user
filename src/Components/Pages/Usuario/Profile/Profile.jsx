@@ -3,14 +3,28 @@ import { useNavigation } from "@react-navigation/native";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import ProfilePicture from "./ProfilePic/ProfilePicture";
-
+import { DadosUsuario } from "../Login/SalvarJWT/AuthContext";
 
 
 export default function Profile() {
 
+    //Dados do usuario
+    const [usuario, setUsuario] = useState("");
+
+    async function PreencherDados() {
+        const jwt = await DadosUsuario();
+        setUsuario(jwt);
+    }
+
+    useEffect(() => {
+        PreencherDados();
+    }, []);
+
+
+
     //navegação para tela de edição
     const navigation = useNavigation();
-    
+
     return (
         <View style={styles.container}>
             <TouchableOpacity
@@ -37,7 +51,15 @@ export default function Profile() {
                 backgroundColor: 'brown',
                 top: '5%'
             }}></View>
-            <Text style={{ fontWeight: '900', fontSize: 25, top: '5%' }}>Fernando Barbosa</Text>
+            <Text
+                style={{
+                    fontWeight: '900',
+                    fontSize: 25,
+                    top: '5%'
+                }}>
+                {usuario.Nome} {usuario.SobreNome}
+            </Text>
+            <Text></Text>
         </View>
     );
 

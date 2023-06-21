@@ -43,8 +43,6 @@ export default function Login() {
     }, [])
 
     async function VerificarLogin(){
-        
-        //Navegação após verificar login
     
         // Constante para verificar token do usuario
         const usuariologado = await ChecarLoginUsuario();
@@ -102,11 +100,6 @@ export default function Login() {
     const CadastroScreen = () => {
         navigation.navigate('Cadastro')
     }
-
-    if(isLoadingApp == true)
-        return(
-            <AppLoad/>
-        );
 
     return (
         <View style={styles.container}>
