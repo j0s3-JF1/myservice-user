@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { PixelRatio, StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
 
@@ -13,9 +13,9 @@ const styles = StyleSheet.create({
 
     Logo: {
         resizeMode: 'stretch',
-        width: 320,
-        height: 60,
-        bottom: 100,
+        width: PixelRatio.getPixelSizeForLayoutSize(110),
+        height: PixelRatio.getPixelSizeForLayoutSize(17),
+        bottom: PixelRatio.getPixelSizeForLayoutSize(30),
     },
 
     title: {
@@ -26,11 +26,11 @@ const styles = StyleSheet.create({
         fontSize: 25,
         lineHeight: 33,
         fontVariant: 'small-caps',
-        top: 10,
+        top: PixelRatio.getPixelSizeForLayoutSize(2),
     },
 
     containerInput: {
-        top: 35,
+        top: PixelRatio.getPixelSizeForLayoutSize(13),
     },
 
     emailArea: {
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         height: 50,
         alignItems: 'center',
-        bottom: 20
+        bottom: PixelRatio.getPixelSizeForLayoutSize(5)
     },
 
     emailIcon: {
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         elevation: 2,
-        top: 70,
+        top: PixelRatio.getPixelSizeForLayoutSize(30),
     },
 
     textButton: {
@@ -110,12 +110,12 @@ const styles = StyleSheet.create({
     info: {
         alignContent: 'center',
         justifyContent: 'center',
-        top: 100
+        top: PixelRatio.getPixelSizeForLayoutSize(40)
     },
 
     SocialMedia: {
         flexDirection: 'row',
-        top: 130
+        top: PixelRatio.getPixelSizeForLayoutSize(50)
     },
 
     buttonGoogle: {
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         backgroundColor: '#FFF',
         elevation: 2,
-        right: 10
+        right: PixelRatio.getPixelSizeForLayoutSize(5)
     },
 
     buttonFacebook: {
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         backgroundColor: '#FFF',
         elevation: 2,
-        left: 10
+        left: PixelRatio.getPixelSizeForLayoutSize(5)
     },
 
     google: {
@@ -155,8 +155,8 @@ const styles = StyleSheet.create({
     },
 
     textCadastro: {
-        top: '40%',
-        flexDirection: 'row'
+        top: PixelRatio.getPixelSizeForLayoutSize(60),
+        flexDirection: 'row',
     },
 })
 

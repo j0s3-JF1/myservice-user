@@ -6,6 +6,7 @@ import {
     ScrollView,
     FlatList,
     PixelRatio,
+    RefreshControl
 } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { PermissionsAndroid, Platform } from 'react-native';
@@ -28,12 +29,66 @@ import AvaliateAPI from './AvaliateButton/API/AvaliateAPI';
 
 export default function Home() {
 
+    //Carregamento de Tela
     const [isLoading, setLoading] = useState(true);
+
+    //Recarregamento de tela
+    const [refreshing, setRefreshing] = useState(false);
+
+    const handleRefresh = async () => {
+        setRefreshing(true);
+    
+        const fetchData = async () => {
+            try {
+                const responseFind = await fetch(URLfind, {
+                    method: 'GET'
+                });
+                const jsonFind = await responseFind.json();
+                setFind(jsonFind);
+                setLoading(false);
+            } catch (error) {
+                console.log(error);
+                alert('Não houve busca');
+            }
+    
+            try {
+                const responseVisit = await fetch(URLvisit, {
+                    method: 'GET'
+                });
+                const jsonVisit = await responseVisit.json();
+                setVisit(jsonVisit);
+                setLoading(false);
+            } catch (error) {
+                console.log(error);
+                alert('Não houve ultimos visitados');
+            }
+        };
+    
+        try {
+            await fetchData();
+        } catch (error) {
+            console.log(error);
+            // Tratar erro geral, se necessário
+        }
+    
+        setTimeout(() => {
+            // Verifique se os dados foram carregados com sucesso
+            if (find.length > 0 && visit.length > 0) {
+                setRefreshing(false);
+            } else {
+                alert('Dados não carregados')
+            }
+        }, 3000);
+    };
 
     //Conexão com API -> Ultimos Procurados
     const [find, setFind] = useState([]);
+    const [visit, setVisit] = useState([]);
+
     //URL -> Ultimos Procurados
-    const URLfind = "https://my-service-server.azurewebsites.net/api/Trabalhador";
+    const URLfind = "https://my-service-server.azurewebsites.net/api/Listaworkers";
+    //URL -> Ultimos visitados
+    const URLvisit = "https://my-service-server.azurewebsites.net/api/categorias_";
 
     useEffect(() => {
         fetch(URLfind, {
@@ -48,11 +103,6 @@ export default function Home() {
             })
     }, []);
 
-    //Conexão com API -> Ultimos visitados
-    const [visit, setVisit] = useState([]);
-    //URL -> Ultimos visitados
-    const URLvisit = "https://my-service-server.azurewebsites.net/api/categorias_";
-
     useEffect(() => {
         fetch(URLvisit, {
             method: 'GET'
@@ -64,68 +114,10 @@ export default function Home() {
                 console.log(error)
                 alert('Não houve ultimos visitados')
             })
-    }, [])
-
-    // //Conexão com API -> Melhores Avaliados
-    // const [avaliate, setAvaliate] = useState([]);
-    // // URL -> Melhores Avaliados
-    // const URLavaliate = " ";
-
-    // useEffect(() => {
-    //     fetch(URLavaliate, {
-    //         method: 'GET'
-    //     })
-    //     .then((response) => response.json())
-    //     .then((json) => setAvaliate(json))
-    //     .catch((error) => {
-    //         console.log(error)
-    //         alert('Não há avaliados')
-    //     })
-    // }, [])
-
+    }, []);
 
     //Constante de listas vindas da API Local
     const [avaliateList, setAvaliateList] = useState(AvaliateAPI);
-
-    //localização do usuario
-    async function requestLocationPermission() {
-        if (Platform.OS === 'android') {
-            try {
-                const granted = await PermissionsAndroid.request(
-                    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-                    {
-                        title: 'Permissão de Localização',
-                        message: 'Este aplicativo precisa acessar sua localização.',
-                        buttonNeutral: 'Pergunte-me depois',
-                        buttonNegative: 'Cancelar',
-                        buttonPositive: 'OK',
-                    }
-                );
-                if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-                    console.log('Permissão de localização concedida');
-                } else {
-                    console.log('Permissão de localização negada');
-                }
-            } catch (err) {
-                console.warn(err);
-            }
-        } else if (Platform.OS === 'ios') {
-            // Solicitar permissão de localização para dispositivos iOS
-        }
-
-        Geolocation.getCurrentPosition(
-            (position) => {
-                const { latitude, longitude } = position.coords;
-                console.log('Latitude:', latitude);
-                console.log('Longitude:', longitude);
-            },
-            (error) => {
-                console.warn('Erro ao obter a localização:', error.code, error.message);
-            },
-            { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-        );
-    }
-
 
     if (isLoading)
         return (
@@ -133,7 +125,13 @@ export default function Home() {
         );
 
     return (
-        <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+        <ScrollView
+            style={styles.container}
+            showsVerticalScrollIndicator={false}
+            refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
+            }
+        >
             <View style={{
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -162,7 +160,7 @@ export default function Home() {
                 <View style={{ flexDirection: 'row', bottom: '1%', left: 10, }}>
                     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                         {
-                            visit.map((visits, index) => (
+                            visit?.map((visits, index) => (
                                 <VisitButton visits={visits} key={index} />
                             ))
                         }
@@ -175,7 +173,7 @@ export default function Home() {
                 <View style={{ flexDirection: 'row', top: '10%', left: 10 }}>
                     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                         {
-                            find.map((finds, index) => (
+                            find?.map((finds, index) => (
                                 <FindButton finds={finds} key={index} />
                             ))
                         }

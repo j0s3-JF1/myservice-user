@@ -29,7 +29,7 @@ export default function EditScreen() {
     }, []);
 
     //campos de informações
-    const id = usuario.ID;
+    const id = usuario?.ID;
     const [nome, setNome] = useState("");
     const [sobrenome, setSobrenome] = useState("")
     const [email, setEmail] = useState("");
@@ -58,7 +58,14 @@ export default function EditScreen() {
 
     return (
         <View style={styles.container}>
-            <Text style={{ fontSize: 25, fontWeight: 'bold', bottom: '10%' }}>Editar Perfil</Text>
+            <Text style={{
+                fontSize: 25,
+                fontWeight: 'bold',
+                bottom: '10%'
+            }}
+            >
+                Editar Perfil
+            </Text>
             <View style={{
                 width: '90%',
                 height: 1,
@@ -119,7 +126,10 @@ export default function EditScreen() {
                 />
             </View>
             <View style={{ width: '60%', height: '7%', top: "5%" }}>
-                <TouchableOpacity style={styles.buttonUpdate} onPress={DataUpdate}>
+                <TouchableOpacity
+                    style={styles.buttonUpdate}
+                    onPress={DataUpdate}
+                >
                     <Text style={{ color: '#FFF', fontWeight: 'bold', fontSize: 20 }}>Atualizar</Text>
                 </TouchableOpacity>
             </View>

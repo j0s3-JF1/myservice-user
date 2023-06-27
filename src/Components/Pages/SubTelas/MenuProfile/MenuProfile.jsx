@@ -22,7 +22,7 @@ const MenuProfile = () => {
 
     const DeletarUsuario = () => {
 
-        fetch("https://my-service-server.azurewebsites.net/api/user/" + usuario.ID, {
+        fetch("https://my-service-server.azurewebsites.net/api/user/" + usuario?.ID, {
             method: 'DELETE',
             headers: {
                 Accept: 'application/json',

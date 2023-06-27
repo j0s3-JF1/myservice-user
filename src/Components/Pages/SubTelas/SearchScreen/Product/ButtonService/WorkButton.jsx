@@ -1,15 +1,15 @@
 import React from "react";
 import {
     View,
-    TouchableOpacity, 
-    Image,
     Text,
-    PixelRatio,
+    Image,
+    TouchableOpacity,
     StyleSheet,
+    PixelRatio
 } from "react-native";
 
-const EnterpriseButton = ({ empresa }) => {
-    return(
+const WorkButton = ({ trabalhador }) => {
+    return (
         <TouchableOpacity
             style={{
                 width: PixelRatio.getPixelSizeForLayoutSize(100),
@@ -23,10 +23,10 @@ const EnterpriseButton = ({ empresa }) => {
             }}
             activeOpacity={0.7}
         >
-            <Text>{empresa?.nome}</Text>
-            <Text>{empresa?.categoria}</Text>
+            <Text>{trabalhador.nome}</Text>
+            <Text>{trabalhador.categoria}</Text>
         </TouchableOpacity>
     );
 }
 
-export default EnterpriseButton;
+export default WorkButton;

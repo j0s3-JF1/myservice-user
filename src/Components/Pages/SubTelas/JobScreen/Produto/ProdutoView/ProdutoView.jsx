@@ -22,21 +22,16 @@ const ProductView = () => {
     const route = useRoute();
 
     //parametros
-    const { id, nome, categoria, descricao, preco, imagem } = route.params
-
-    const params = {
-        ident: id,
-    }
+    const { id, nome, categoria, descricao, preco, imagem, instagram } = route.params
 
     //rota para link de rede social
     const LinkInstagram = () => {
-        Linking.openURL('https://www.instagram.com/my.service_/');
+        Linking.openURL('https://www.instagram.com/'+ instagram);
     }
 
     const LinkWhatsApp = () => {
         Linking.openURL('https://chat.whatsapp.com/Be0eLWjMPXG22s35ZozdqO');
     }
-
 
     return (
         <View style={styles.container}>

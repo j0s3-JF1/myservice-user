@@ -46,7 +46,9 @@ class Loading extends Component {
             }}>
                 <Animated.Image
                     source={require('../../../assets/MyService_Icon.png')}
-                    style={{opacity}}
+                    style={{
+                      opacity
+                    }}
                 />
             </View>
         );

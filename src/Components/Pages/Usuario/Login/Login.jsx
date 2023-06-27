@@ -52,10 +52,6 @@ export default function Login() {
     
     };
 
-    function temporario() {
-        ''
-    }
-
     //Função para efetuar Login
     function Login() {
 

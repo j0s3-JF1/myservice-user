@@ -29,36 +29,41 @@ export default function SearchResult() {
     }
 
     //Resultado dos servicos do Trabalhador
-    const [work, setTrabalho] = useState([]);
-
-    useEffect(() => {
-        alert('Executou')
-        fetch('https://my-service-server.azurewebsites.net/api/Categorias_/Trabalhador?categoria=delivery', {
-            method: 'GET'
-        })
-            .then((response) => response.json())
-            .then((json) => setTrabalho(json))
-            .catch((err) => {
-                console.log(err);
-                alert('Nenhum Serviço Encontrado!');
-            })
-    }, []);
-
-    //Resultado dos servidos de Empresa
+    const [trabalho, setTrabalho] = useState([]);
     const [enterprise, setEnterprise] = useState([]);
-    useEffect(() => {
-        fetch('https://my-service-server.azurewebsites.net/api/Categorias_/Empresa?categoria=delivery', {
-            method: 'GET'
-        })
-            .then((response) => response.json())
-            .then((json) => setEnterprise(json))
-            .catch((err) => {
-                console.log(err);
-                alert('Nenhum Serviço Encontrado');
+
+    async function Itens() {
+        //Resultado dos serviços trabalhador
+        useEffect(() => {
+            fetch('https://my-service-server.azurewebsites.net/api/Categorias_/Trabalhador?categoria='+categoria, {
+                method: 'GET',
             })
+                .then((response) => response.json())
+                .then((json) => setTrabalho(json))
+                .catch((err) => {
+                    console.log(err);
+                    alert(err);
+                })
+        }, []);
+
+        //Resultado dos serviços de Empresa
+        useEffect(() => {
+            fetch('https://my-service-server.azurewebsites.net/api/Categorias_/Empresa?categoria='+ categoria, {
+                method: 'GET'
+            })
+                .then((response) => response.json())
+                .then((json) => setEnterprise(json))
+                .catch((err) => {
+                    console.log(err);
+                    alert('Nenhum Serviço Encontrado');
+                })
+        }, []);
+
+    }
+
+    useEffect(() => {
+        Itens();
     }, [])
-
-
 
     return (
         <View
@@ -154,7 +159,7 @@ export default function SearchResult() {
                 >
                     {
                         search ?
-                            work.map((trabalhador, index) => (
+                            trabalho.map((trabalhador, index) => (
                                 <WorkButton
                                     trabalhador={trabalhador}
                                     key={index}
