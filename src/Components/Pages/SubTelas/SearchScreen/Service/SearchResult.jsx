@@ -35,7 +35,7 @@ export default function SearchResult() {
     async function Itens() {
         //Resultado dos serviços trabalhador
         useEffect(() => {
-            fetch('https://my-service-server.azurewebsites.net/api/Categorias_/Trabalhador?categoria='+categoria, {
+            fetch('https://my-service-server.azurewebsites.net/api/Categorias_/Trabalhador?categoria='+ categoria, {
                 method: 'GET',
             })
                 .then((response) => response.json())

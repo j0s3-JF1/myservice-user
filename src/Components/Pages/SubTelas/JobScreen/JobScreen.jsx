@@ -160,7 +160,7 @@ export default function JobScreen() {
             >
                 <View style={{
                     width: '100%',
-                    height: 1100,
+                    height: 1800,
                     alignItems: 'center'
                 }}>
                     {
